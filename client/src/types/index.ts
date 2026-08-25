@@ -1,0 +1,36 @@
+export * from '../../../shared/types/device.js';
+export * from '../../../shared/types/socket.js';
+
+export interface SelectedFile {
+  id: string;
+  file: File;
+  name: string;
+  size: number;
+  type: string;
+}
+
+export type TransferRole = 'sender' | 'receiver' | 'none';
+
+export type TransferStatus =
+  | 'idle'
+  | 'pending_approval'
+  | 'connecting'
+  | 'transferring'
+  | 'completed'
+  | 'failed'
+  | 'cancelled';
+
+export interface TransferState {
+  role: TransferRole;
+  status: TransferStatus;
+  currentFileName?: string;
+  currentFileIndex?: number;
+  totalFiles?: number;
+  fileSize?: number;
+  transferredBytes: number;
+  progress: number;
+  speed: number;
+  timeRemaining: number;
+  error?: string;
+  peerDeviceName?: string;
+}
